@@ -3,7 +3,7 @@ variable "bucket_name" {
   type        = string
 }
 
-variable "acl" {
-  description = "Access control for the bucket"
+variable "private_subnet_cidr" {
+  description = "CIDR block to allow bucket access from specific subnets."
   type        = string
 }

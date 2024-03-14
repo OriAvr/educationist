@@ -16,9 +16,9 @@
 # keys, and other secrets. You'll manually add exceptions as needed.
 *.tfvars
 *.tfvars.json
-storage/variables.tf
-network/variables.tf
-compute/variables.tf
+environments/dev/storage/variables.tf
+environments/dev/network/variables.tf
+environments/dev/compute/variables.tf
 
 # Logs
 crash.log
