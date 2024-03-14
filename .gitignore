@@ -6,6 +6,17 @@
 *.tfstate
 *.tfstate.*
 
+.DS_Store
+modules/.DS_Store
+modules/s3/.DS_Store
+environments/dev/storage/.DS_Store
+environments/dev/compute/.DS_Store
+environments/dev/network/.DS_Store
+environments/dev/.DS_Store
+environments/prod/.DS_Store
+environments/.DS_Store
+global/.DS_Store
+
 # Lock file
 .terraform.lock.hcl
 
