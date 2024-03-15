@@ -12,12 +12,11 @@ data "aws_ami" "latest_amazon_linux" {
 resource "aws_instance" "this" {
   ami           = data.aws_ami.latest_amazon_linux.id
   instance_type = var.instance_type
-  key_name      = var.key_pair
   monitoring    = true
 
   network_interface {
-    network_interface_id = var.network_interface_id
     device_index         = var.network_device_index
+    network_interface_id = var.network_interface_id
   }
 
   tags = {

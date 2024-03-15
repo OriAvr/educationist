@@ -19,7 +19,3 @@ variable "network_device_index" {
   type        = number
 }
 
-variable "key_pair" {
-  description = "Key-pair for ssh access."
-  type        = string
-}

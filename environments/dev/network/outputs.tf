@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "vpc_cidr" {
-  value = module.main_vpc.cidr_block
+  value = module.main_vpc.vpc_cidr
 }
 
 output "public_subnet_id" {
@@ -31,5 +31,5 @@ output "rds_subnet_id" {
 }
 
 output "igw_id" {
-  value = aws_internet_gateway.this.id
+  value = module.main_vpc.igw_id
 }
