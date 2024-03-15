@@ -11,13 +11,19 @@ resource "aws_s3_bucket_versioning" "this" {
   }
 }
 
+resource "aws_kms_key" "mykey" {
+  description             = "KMS key to encrypt the s3 objects."
+  deletion_window_in_days = 10
+}
+
 #bucket encryption
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
   bucket = aws_s3_bucket.this.id
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+      kms_master_key_id = aws_kms_key.mykey.arn
+      sse_algorithm     = "aws:kms"
     }
   }
 }
