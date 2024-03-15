@@ -6,7 +6,7 @@ variable "vpc_cidr" {
 
 variable "vpc_name" {
   description = "Name for the VPC."
-  type        = string
+  default     = "my-vpc"
 }
 
 variable "public_subnet_cidr" {
