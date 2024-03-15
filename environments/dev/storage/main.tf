@@ -1,11 +1,16 @@
-module "network" {
-  source = "../network"
+data "terraform_remote_state" "network_state" {
+  backend = "s3"
+  config = {
+    bucket = "educationist-remote-state"
+    key    = "network/terraform.tfstate"
+    region = "eu-west-3"
+  }
 }
 
 module "my_s3_bucket" {
   source              = "../../../modules/s3"
   bucket_name         = "educationist-files"
-  private_subnet_cidr = module.network.private_subnet_cidr
+  private_subnet_cidr = data.terraform_remote_state.network_state.outputs.private_subnet_cidr
 }
 
 module "my_db" {
@@ -21,6 +26,7 @@ module "my_db" {
   rds_instance_class = "db.t3.micro"
   rds_security_group = aws_security_group.rds_sg.id
 
-  rds_subnet = module.network.rds_subnet_id
+  rds_subnet     = data.terraform_remote_state.network_state.outputs.rds_subnet_id
+  private_subnet = data.terraform_remote_state.network_state.outputs.private_subnet_id
 }
 

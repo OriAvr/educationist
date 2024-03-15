@@ -1,7 +1,3 @@
-/*module "network" {
-  source = "../network"
-}*/
-
 data "terraform_remote_state" "network_state" {
   backend = "s3"
   config = {
@@ -41,5 +37,3 @@ module "private_instance" {
   network_device_index = 0
   instance_name        = var.private_instance_name
 }
-
-

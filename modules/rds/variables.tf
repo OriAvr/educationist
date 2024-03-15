@@ -36,9 +36,16 @@ variable "rds_password" {
 }
 
 variable "rds_subnet" {
-  description = "The DB subnet group name for the RDS instance."
+  description = "The DB subnet name for the RDS instance."
   type        = string
 }
+
+variable "private_subnet" {
+  description = "The private subnet name for the RDS instance."
+  type        = string
+}
+
+
 variable "rds_security_group" {
   description = "Database security group association."
   type        = string

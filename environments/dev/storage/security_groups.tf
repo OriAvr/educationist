@@ -1,7 +1,7 @@
 resource "aws_security_group" "rds_sg" {
   name        = "rds-security-group"
   description = "Security group for RDS DB instance"
-  vpc_id      = module.network.vpc_id # Might be vpc_id output
+  vpc_id      = data.terraform_remote_state.network_state.outputs.vpc_id
 
   # Inbound rules
   ingress {
@@ -9,7 +9,7 @@ resource "aws_security_group" "rds_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [module.network.public_subnet_cidr]
+    cidr_blocks = [data.terraform_remote_state.network_state.outputs.public_subnet_cidr]
   }
 
   ingress {
@@ -17,7 +17,7 @@ resource "aws_security_group" "rds_sg" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = [module.network.public_subnet_cidr]
+    cidr_blocks = [data.terraform_remote_state.network_state.outputs.public_subnet_cidr]
   }
 
   # Outbound rules  
