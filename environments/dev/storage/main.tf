@@ -1,3 +1,8 @@
+variable "rds_username" {}
+variable "rds_password" {}
+variable "rds_engine_version" {}
+
+
 data "terraform_remote_state" "network_state" {
   backend = "s3"
   config = {
@@ -22,7 +27,7 @@ module "my_db" {
   rds_password          = var.rds_password
 
   rds_engine         = "mysql"
-  rds_engine_version = var.rds_engine_version
+  rds_engine_version = "8.0.35"
   rds_instance_class = "db.t3.micro"
   rds_security_group = aws_security_group.rds_sg.id
 
