@@ -6,21 +6,25 @@ variable "vpc_cidr" {
 
 variable "vpc_name" {
   description = "Name for the VPC."
-  default     = "my-vpc"
+  type        = string
+  #default     = "my-vpc"
 }
 
 variable "public_subnet_cidr" {
   description = "CIDR range for the public subnet."
+  type        = string
   default     = "10.0.0.0/25"
 }
 
 variable "private_subnet_cidr" {
   description = "CIDR range for the private subnet."
+  type        = string
   default     = "10.0.0.128/26"
 }
 
 variable "rds_cidr" {
   description = "CIDR range for the RDS subnet."
+  type        = string
   default     = "10.0.0.192/26"
 }
 
