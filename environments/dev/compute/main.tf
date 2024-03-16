@@ -1,3 +1,15 @@
+variable "public_instance_name" {
+  description = "Name for the public EC2 instance."
+  default     = "public_instance"
+  type        = string
+}
+
+variable "private_instance_name" {
+  description = "Name for the private EC2 instance."
+  default     = "private_instance"
+  type        = string
+}
+
 data "terraform_remote_state" "network_state" {
   backend = "s3"
   config = {
