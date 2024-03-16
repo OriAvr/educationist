@@ -28,7 +28,7 @@ jobs:
         run: |
           cd environments/dev/network
           terraform init
-          terraform plan
+          terraform apply --auto-approve
           cd ../../../
           cd environments/dev/storage
           terraform init
@@ -37,3 +37,6 @@ jobs:
           cd environments/dev/compute
           terraform init
           terraform plan
+          cd ../../../
+          cd environments/dev/network
+          terraform destroy --auto-approve
