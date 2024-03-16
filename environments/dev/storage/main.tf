@@ -1,7 +1,5 @@
 variable "rds_username" {}
 variable "rds_password" {}
-variable "rds_engine_version" {}
-
 
 data "terraform_remote_state" "network_state" {
   backend = "s3"
