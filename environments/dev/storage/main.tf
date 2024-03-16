@@ -1,5 +1,9 @@
-variable "rds_username" {}
-variable "rds_password" {}
+variable "rds_username" {
+  default = "db_admin"
+}
+variable "rds_password" {
+  default = "db_passwrd"
+}
 
 data "terraform_remote_state" "network_state" {
   backend = "s3"

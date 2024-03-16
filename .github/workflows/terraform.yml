@@ -36,4 +36,4 @@ jobs:
           cd ../../../
           cd environments/dev/compute
           terraform init
-          terraform plan -var="rds_username=${{ secrets.RDS_USERNAME }}" -var="rds_password=${{ secrets.RDS_PASSWORD }}"
+          terraform plan
