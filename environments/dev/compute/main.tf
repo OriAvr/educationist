@@ -1,15 +1,3 @@
-variable "public_instance_name" {
-  description = "Name for the public EC2 instance."
-  default     = "public_instance"
-  type        = string
-}
-
-variable "private_instance_name" {
-  description = "Name for the private EC2 instance."
-  default     = "private_instance"
-  type        = string
-}
-
 data "terraform_remote_state" "network_state" {
   backend = "s3"
   config = {
@@ -32,11 +20,12 @@ module "public_instance" {
   network_interface_id = aws_network_interface.public_interface.id
   network_device_index = 0
   instance_name        = var.public_instance_name
+  instance_type        = var.instance_type
 }
 
 resource "aws_network_interface" "private_interface" {
   subnet_id       = data.terraform_remote_state.network_state.outputs.private_subnet_id
-  security_groups = [aws_security_group.private_subnet_inbound_outbound.id]
+  security_groups = [aws_security_group.private_subnet_inbound.id]
 
   tags = {
     Name = "private_eni"
@@ -48,4 +37,5 @@ module "private_instance" {
   network_interface_id = aws_network_interface.private_interface.id
   network_device_index = 0
   instance_name        = var.private_instance_name
+  instance_type        = var.instance_type
 }

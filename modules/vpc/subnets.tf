@@ -3,7 +3,7 @@ resource "aws_subnet" "public_subnet" {
   cidr_block = var.public_subnet_cidr
 
   tags = {
-    Name = "public-subnet"
+    Name = var.public_subnet_name
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_subnet" "private_subnet" {
   cidr_block = var.private_subnet_cidr
 
   tags = {
-    Name = "private-subnet"
+    Name = var.private_subnet_name
   }
 }
 
@@ -22,6 +22,6 @@ resource "aws_subnet" "rds_subnet" {
   cidr_block = var.rds_cidr
 
   tags = {
-    Name = "rds-subnet"
+    Name = var.rds_subnet_name
   }
 }

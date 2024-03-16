@@ -13,7 +13,7 @@ resource "aws_s3_bucket_versioning" "this" {
 
 resource "aws_kms_key" "my_key" {
   description             = "KMS key to encrypt the s3 objects."
-  deletion_window_in_days = 10
+  deletion_window_in_days = var.kms_key_deletion_window
 }
 
 #bucket encryption
@@ -23,7 +23,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.my_key.arn
-      sse_algorithm     = "aws:kms"
+      sse_algorithm     = var.bucket_sse_alg
     }
   }
 }

@@ -17,7 +17,6 @@
 # keys, and other secrets. You'll manually add exceptions as needed.
 *.tfvars
 *.tfvars.json
-variables.tf
 
 # Logs
 crash.log

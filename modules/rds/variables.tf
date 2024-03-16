@@ -3,10 +3,14 @@ variable "rds_name" {
   type        = string
 }
 
+variable "rds_subnet_group_name" {
+  description = "RDS subnet group name."
+  type        = string
+}
+
 variable "rds_engine" {
   description = "Database engine."
   type        = string
-  default     = "mysql"
 }
 
 variable "rds_engine_version" {
@@ -17,7 +21,6 @@ variable "rds_engine_version" {
 variable "rds_instance_class" {
   description = "Database instance class."
   type        = string
-  default     = "db.t3.micro"
 }
 
 variable "rds_allocated_storage" {
@@ -45,7 +48,6 @@ variable "private_subnet" {
   type        = string
 }
 
-
 variable "rds_security_group" {
   description = "Database security group association."
   type        = string
@@ -54,6 +56,5 @@ variable "rds_security_group" {
 variable "rds_backup_retention" {
   description = "Database backup retention period(in days)."
   type        = number
-  default     = 7
 }
 

@@ -1,11 +1,5 @@
-/* data "aws_vpc" "this" {
-  tags = {
-
-  }
-}*/
-
 resource "aws_security_group" "public_subnet_inbound" {
-  name        = "allow_http_ssh"
+  name        = var.public_subnet_sg
   description = "Allow incoming http and ssh traffic"
   vpc_id      = data.terraform_remote_state.network_state.outputs.vpc_id
 
@@ -14,7 +8,7 @@ resource "aws_security_group" "public_subnet_inbound" {
     from_port   = 0
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.public_subnet_http_inbound_cidr]
   }
 
   ingress {
@@ -24,13 +18,10 @@ resource "aws_security_group" "public_subnet_inbound" {
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.network_state.outputs.vpc_cidr]
   }
-  tags = {
-    Name = "allow_http_ssh"
-  }
 }
 
-resource "aws_security_group" "private_subnet_inbound_outbound" {
-  name        = "allow_inbound_outbound"
+resource "aws_security_group" "private_subnet_inbound" {
+  name        = var.private_subnet_sg
   description = "Allow incoming traffic from web server and outbound to database"
   vpc_id      = data.terraform_remote_state.network_state.outputs.vpc_id
 
@@ -40,9 +31,5 @@ resource "aws_security_group" "private_subnet_inbound_outbound" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.network_state.outputs.vpc_cidr]
-  }
-
-  tags = {
-    Name = "allow_http_ssh"
   }
 }
